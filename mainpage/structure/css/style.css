@@ -302,12 +302,9 @@ section > div,
   position: absolute;
   top: 0;
   left: 50%;
-  display: flex;
   width: min(460px, calc(100% - 4rem));
   height: 100%;
-  align-items: flex-end;
   overflow: hidden;
-  flex-direction: column;
   border-radius: 1.5rem;
   background: white;
   box-shadow: 0 22px 52px rgba(43, 23, 36, 0.14);
@@ -343,10 +340,9 @@ section > div,
 }
 
 .memory-slide-image {
-  position: relative;
+  display: block;
   width: 100%;
   height: 100%;
-  flex: 1;
   object-fit: cover;
   object-position: center;
   transition: transform 700ms ease;
@@ -495,6 +491,16 @@ section > div,
   outline-offset: 3px;
 }
 
+@media (max-width: 900px) {
+  .memory-slide.is-prev {
+    transform: translateX(calc(-50% - clamp(160px, 22vw, 260px))) scale(0.78) rotate(-4deg);
+  }
+
+  .memory-slide.is-next {
+    transform: translateX(calc(-50% + clamp(160px, 22vw, 260px))) scale(0.78) rotate(4deg);
+  }
+}
+
 @media (max-width: 640px) {
   .hero::before {
     display: none;
@@ -552,6 +558,14 @@ section > div,
 
   .memory-slide {
     width: min(460px, calc(100% - 2rem));
+  }
+
+  .memory-slide.is-prev {
+    transform: translateX(calc(-50% - clamp(140px, 38vw, 220px))) scale(0.8) rotate(-4deg);
+  }
+
+  .memory-slide.is-next {
+    transform: translateX(calc(-50% + clamp(140px, 38vw, 220px))) scale(0.8) rotate(4deg);
   }
 }
 

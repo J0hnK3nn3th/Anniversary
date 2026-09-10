@@ -97,10 +97,10 @@
           <div id="memoryCarousel" class="memory-carousel" role="region" aria-roledescription="carousel" aria-label="Our favorite memories" tabindex="0">
             <div class="memory-carousel-viewport">
               <div class="memory-carousel-track" data-carousel-track>
-                <article class="memory-slide" data-slide role="group" aria-roledescription="slide" aria-label="1 of 15">
+                <article class="memory-slide is-active" data-slide role="group" aria-roledescription="slide" aria-label="1 of 15">
                   <img class="memory-slide-image" src="https://drive.google.com/thumbnail?id=1M8keaJAA4782kgaxr2jhY-ARnJoSvVKa&amp;sz=w1600" alt="Anniversary memory 1" />
                 </article>
-                <article class="memory-slide" data-slide role="group" aria-roledescription="slide" aria-label="2 of 15" aria-hidden="true">
+                <article class="memory-slide is-next" data-slide role="group" aria-roledescription="slide" aria-label="2 of 15" aria-hidden="true">
                   <img class="memory-slide-image" src="https://drive.google.com/thumbnail?id=1J9vazdFT66jlx2niexuiUgRe19wI8uT0&amp;sz=w1600" alt="Anniversary memory 2" />
                 </article>
                 <article class="memory-slide" data-slide role="group" aria-roledescription="slide" aria-label="3 of 15" aria-hidden="true">
@@ -139,7 +139,7 @@
                 <article class="memory-slide" data-slide role="group" aria-roledescription="slide" aria-label="14 of 15" aria-hidden="true">
                   <img class="memory-slide-image" src="https://drive.google.com/thumbnail?id=1rByVS2sKGWrQSgeqcOh5KwY1eqMKWZOb&amp;sz=w1600" alt="Anniversary memory 14" />
                 </article>
-                <article class="memory-slide" data-slide role="group" aria-roledescription="slide" aria-label="15 of 15" aria-hidden="true">
+                <article class="memory-slide is-prev" data-slide role="group" aria-roledescription="slide" aria-label="15 of 15" aria-hidden="true">
                   <img class="memory-slide-image" src="https://drive.google.com/thumbnail?id=1YAVBFxZLjdKkYZkxs4yr2wKz5Kb-H0Qm&amp;sz=w1600" alt="Anniversary memory 15" />
                 </article>
               </div>
@@ -276,9 +276,10 @@ YOUR FUTURE  HUSBAND,
           const isActive = slideIndex === currentSlide;
           const isPrevious = slideIndex === (currentSlide - 1 + slides.length) % slides.length;
           const isNext = slideIndex === (currentSlide + 1) % slides.length;
-          slide.classList.toggle('is-active', isActive);
-          slide.classList.toggle('is-prev', isPrevious);
-          slide.classList.toggle('is-next', isNext);
+          slide.classList.remove('is-active', 'is-prev', 'is-next');
+          if (isActive) slide.classList.add('is-active');
+          if (isPrevious) slide.classList.add('is-prev');
+          if (isNext) slide.classList.add('is-next');
           slide.setAttribute('aria-hidden', String(!isActive));
           slide.setAttribute('aria-label', `${slideIndex + 1} of ${slides.length}`);
         });
