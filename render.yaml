@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: anniversary
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn Anniversary.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: PYTHON_VERSION
+        value: "3.13.0"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
